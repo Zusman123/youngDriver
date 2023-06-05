@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="שיעורי נהיגה"
+        android:id="@+id/homeF"
+        android:icon="@drawable/ic_car"/>
+    <item android:title="תשלומים"
+        android:id="@+id/paymentsF"
+        android:icon="@drawable/ic_payment"/>
+    <item android:title="מד מלווה"
+        android:id="@+id/accompanyF"
+        android:icon="@drawable/ic_accompany"/>
+    <item android:title="הפרופיל שלי"
+        android:id="@+id/profileF"
+        android:icon="@drawable/ic_person"/>
+</menu>

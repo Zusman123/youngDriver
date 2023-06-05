@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainLL"
+        android:orientation="vertical">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="fill_parent"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:text="הוספת שיעור"
+               android:gravity="center"
+               android:layout_centerInParent="true"
+               android:textSize="16sp"
+               android:padding="12dp"
+               android:textStyle="bold"
+               android:textColor="#fff"
+               android:background="@color/colorAccent"
+               android:id="@+id/regLsnI"/>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="fill_parent"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:text="הוספת קבוצת שיעורים"
+               android:gravity="center"
+               android:layout_centerInParent="true"
+               android:textSize="14sp"
+               android:padding="12dp"
+               android:textColor="#fff"
+               android:background="@color/colorWeakAccent"
+               android:id="@+id/groupLsnI"/>
+
+       </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/regLL"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_return" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="סוג השיעור:"
+                    android:layout_marginStart="15dp"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:id="@+id/rgType"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="רגיל"
+                        android:buttonTint="@color/colorAccent"
+                        android:id="@+id/lType1"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="שיעור וחצי"
+                        android:buttonTint="@color/colorAccent"
+                        android:id="@+id/lType1_5"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="שיעור כפול"
+                        android:buttonTint="@color/colorAccent"
+                        android:id="@+id/lType2"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="טסט פנימי"
+                        android:buttonTint="@color/colorAccent"
+                        android:id="@+id/lType3"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_time" />
+
+                <TextView
+                    android:id="@+id/dateD"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="בחר תאריך"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_marginStart="15dp"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:text="שעת התחלה"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_marginStart="15dp"
+                    android:id="@+id/startTimeD"
+                    android:textColor="#000"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:background="#fff"
+                    android:text="  -  "
+                    android:id="@+id/makaf"
+                    android:textColor="#000"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="שעת סיום"
+                    android:id="@+id/endTimeD"
+                    android:textColor="#000"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/groupLL"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_car" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:text="כמות שיעורים"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/countGroupET"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:maxLength="5"
+                    android:layout_marginHorizontal="10dp"
+                    android:hint="לדוגמה: 5 או 6.5"
+                    android:inputType="numberDecimal"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_payment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginStart="15dp"
+                android:id="@+id/priceETtag"
+                android:text="מחיר השיעור"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/priceD"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:maxLength="5"
+                android:layout_marginHorizontal="10dp"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:padding="5dp"
+                android:id="@+id/paidtv"
+                android:layout_marginStart="15dp"
+                android:gravity="center_vertical"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:text="שולם: "/>
+            <CheckBox
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/cbPaidD"
+                android:buttonTint="@color/colorAccent"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/okD"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+          android:layout_below="@+id/mainLL"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimary"
+            android:text="הוספה"
+            android:paddingVertical="15dp"/>
+
+
+
+</RelativeLayout>

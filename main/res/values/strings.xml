@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">נהג צעיר</string>
+    <string name="admob_app_id">ca-app-pub-6648368380676140~4118469178</string>
+
+    <string name="interstitial_payments">ca-app-pub-6648368380676140/4529849944</string>
+    <string name="main_banner_ad">ca-app-pub-6648368380676140/9209006149</string>
+    <string name="after_widget">ca-app-pub-6648368380676140/3071927803</string>
+    <string name="entery_ad">ca-app-pub-6648368380676140/6951463069</string>
+
+
+
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">מד מלווה</string>
+    <string name="shareText" >מד המלווה שלי😱🤯\nנוצר באמצעות \"נהג צעיר\" - אפליקציה ללומדי נהיגה ונהגים חדשים.\nהורידו עכשיו בחינם👇\nhttps://play.google.com/store/apps/details?id=com.mz.SmartApps.youngDriver</string>
+    <!-- interstitial id demo:  ca-app-pub-3940256099942544/1033173712-->
+    <!-- interstitial_payments id:  ca-app-pub-6648368380676140/4529849944-->
+
+</resources>

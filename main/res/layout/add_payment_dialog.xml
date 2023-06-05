@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:text="הוסף תשלום" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+       android:layout_marginHorizontal="10dp"
+        android:textColor="#000"
+        android:text="שילמתי על" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="#000"
+            android:id="@+id/nameAutoC"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#000"
+        android:text="כמה שילמתי" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:inputType="number"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#000"
+        android:id="@+id/priceDialog"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addPayBtn"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        android:background="@color/gray"
+        android:enabled="false"
+        android:text="הוספה" />
+</LinearLayout>

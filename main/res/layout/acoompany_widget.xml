@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Lamed.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/widgetBody"
+    android:background="@drawable/rounded_corners"
+    android:theme="@style/AppTheme.AppWidgetContainer">
+
+    <TextView
+        android:id="@+id/title_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_centerHorizontal="true"
+        android:text="מד מלווה"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/mis_widget"
+        android:layout_below="@+id/title_widget"
+        android:layout_centerInParent="true">
+
+        <ProgressBar
+            android:id="@+id/progressB_widget"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_shape"
+            android:indeterminate="false"
+            android:max="00"
+            android:progress="0"
+            android:progressDrawable="@drawable/circular_progress_bar" />
+
+
+        <TextView
+            android:id="@+id/days_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="טוען..."
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_below="@+id/mis_widget"
+        android:layout_centerHorizontal="true"
+        android:background="#fff"
+        android:text="הצג הכל"
+        android:id="@+id/show_more"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
+</RelativeLayout>
