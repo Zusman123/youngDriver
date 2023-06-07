@@ -52,6 +52,7 @@ public class PaymentsAdapter extends BaseAdapter {
         return view;
     }
 
+    //Updates the list of payments with the provided updated payments.
     public void updateGroups(ArrayList<Payment> updatedPayments) {
         payments.clear();
         payments.addAll(updatedPayments);
