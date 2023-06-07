@@ -37,6 +37,7 @@ import static java.util.Calendar.HOUR_OF_DAY;
 import static java.util.Calendar.MINUTE;
 import static java.util.Calendar.getInstance;
 
+  //AddLessonDialog is an abstract class that extends BottomSheetDialog and provides a dialog for adding lessons.
 public abstract class AddLessonDialog extends BottomSheetDialog {
     private TextView dateD, startTimeD, endTimeD;
     private EditText priceD, countGroupET;
@@ -52,11 +53,14 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
     private LessonsDB lessonsDB;
     private SharedPreferences sharedPreferences;
     private double[] types = new double[]{1,1.5,2,0};
+    
+  //Constructs an instance of AddLessonDialog
     public AddLessonDialog(@NonNull final Context context) {
         super(context);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         setContentView(R.layout.add_lesson_dialog);
 
+        // Initialize views
         dateD = findViewById(R.id.dateD);
         startTimeD = findViewById(R.id.startTimeD);
         endTimeD = findViewById(R.id.endTimeD);
@@ -71,16 +75,19 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         priceETtag = findViewById(R.id.priceETtag);
         countGroupET = findViewById(R.id.countGroupET);
 
+         // Initialize shared preferences and lessons database
         sharedPreferences = context.getSharedPreferences("file1",0);
-
         lessonsDB = new LessonsDB(context);
 
+         // Load price and time values from shared preferences
         price = sharedPreferences.getInt("price",0);
         time = sharedPreferences.getInt("time",0);
 
         ProperInput properInput = new ProperInput();
         TextWatcher proper2 = properInput.cheakProperInput(new EditText[]{countGroupET,priceD},okD);
         TextWatcher proper1 = properInput.cheakProperInput(priceD,okD);
+        
+        // Initialize click listener for navigation buttons
         View.OnClickListener navClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +137,7 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         regLsnI.setOnClickListener(navClick);
         groupLsnI.setOnClickListener(navClick);
 
+         // Set initial values and listeners
         rgType.check(R.id.lType1);
         setStartAndEndTime();
         dateD.setText(getCurrentDate());
@@ -230,6 +238,7 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
     }
     public abstract void onLessonAdded();
 
+    //Creates a TextWatcher with animation to apply on a TextView after text has been changed.
     private TextWatcher textChangedWithAnimation(final TextView tv){
         TextWatcher textWatcher = new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -244,12 +253,14 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         return textWatcher;
     }
 
-
+//Retrieves the selected type value from the RadioGroup.
     private double getType(){
         View radioButton = rgType.findViewById(rgType.getCheckedRadioButtonId());
         int type = rgType.indexOfChild(radioButton);
         return types[type];
     }
+    
+    //Checks if the provided end time is after the start time.
     private boolean isTrueStartEndTime(String endTime){
         Calendar startTcal = getCalendarByTime(startTimeD.getText().toString());
         Calendar endTcal = getCalendarByTime(endTime);
@@ -258,19 +269,25 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
           return true;
         return false;
     }
+    //Retrieves the current date in the format "dd/MM/yyyy".
     public String getCurrentDate(){
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(calendar.getTime());
     }
-
+    
+//Retrieves the hour from a time string in the format "HH:mm".
     public int getHourFromString(String time){
        return getCalendarByTime(time).get(HOUR_OF_DAY);
     }
+    
+    //Retrieves the minute from a time string in the format "HH:mm".
     public int getMinuteFromString(String time){
        return getCalendarByTime(time).get(MINUTE);
     }
+    
+    //Retrieves a Calendar instance based on a time string in the format "HH:mm".
     private Calendar getCalendarByTime(String time){
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         Date d = null;
@@ -281,6 +298,8 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         cal.setTime(d);
         return cal;
     }
+    
+    //Calculates the end time based on the start time and the lesson type.
     public String getEndTimeByStartTime(){
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
        Calendar cal = getCalendarByTime(startTimeD.getText().toString()); //calendar of start lesson
@@ -290,6 +309,8 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
            cal.add(MINUTE,15); //טסט פנימי 15 דקות
         return timeFormat.format(cal.getTime());
     }
+    
+    //Sets the start time and end time based on the current time and the lesson type.
     public void setStartAndEndTime(){
         Calendar cTime = Calendar.getInstance(TimeZone.getDefault());
         int defTime = (int) (time*getType());
@@ -313,7 +334,7 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         startTime = df.format(cal.getTime());
 
     }
-
+//Converts a date string in the format "dd/MM/yyyy" to a Date object
     public Date str2date(String date){
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
         Date d = null;
@@ -322,6 +343,8 @@ public abstract class AddLessonDialog extends BottomSheetDialog {
         } catch (ParseException e) { e.printStackTrace(); }
         return d;
     }
+    
+    //Converts a time string in the format "HH:mm" to a Date object.
     public Date str2time(String date){
         SimpleDateFormat dateFormat= new SimpleDateFormat("HH:mm");
         Date d = null;
