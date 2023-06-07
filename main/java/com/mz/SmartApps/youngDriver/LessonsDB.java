@@ -72,6 +72,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         //this.onCreate(db);
     }
 
+    //Calculates the total payment amount for all lessons in the database.
     public int getTotalPayment() {
         int total = 0;
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -90,6 +91,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return total;
     }
 
+    //Calculates the total amount of unpaid lessons in the database.
     public int getTotalNotPaid() {
         int total = 0;
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -110,6 +112,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return total;
     }
 
+    //Calculates the total count of lessons in the database.
     public double getLessonsCount() {
         double count = 0;
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -128,6 +131,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return count;
     }
 
+    //Calculates the total length of all lessons in the database.
     public String getTotalLessonsLength() {
         int total = 0;
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -163,6 +167,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         }
     }
 
+    //Calculates the difference in minutes between two time values.
     public int getDiffrenceInMintue(String startTime, String endTime) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         Date startDate = null;
@@ -177,6 +182,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return (int) (difference / (1000 * 60));
     }
 
+    //Retrieves all lessons from the database.
     public ArrayList<Lesson> getAllLessons() {
         ArrayList<Lesson> lessons = new ArrayList<Lesson>();
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -209,6 +215,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return lessons;
     }
 
+    //Retrieves all lessons from the database and sorts them by date in descending order.
     public ArrayList<Lesson> getSortLessonsByDate() {
         ArrayList<Lesson> sortedGroups = getAllLessons();
         Collections.sort(sortedGroups, new Comparator<Lesson>() {
@@ -222,6 +229,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         return sortedGroups;
     }
 
+    //Adds a new lesson to the database.
     public void addLesson(Lesson lesson) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -238,6 +246,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Adds a new lessons group to the database.
     public void addLessonsGroup(Lesson lesson) {
         //public Lesson(int  id, String date, int price, boolean paid, double count, boolean isGroup){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -253,7 +262,7 @@ public class LessonsDB extends SQLiteOpenHelper {
         db.close();
     }
 
-
+//Updates an existing lesson or lessons group in the database.
     public int updateGroup(Lesson lesson) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -275,12 +284,15 @@ public class LessonsDB extends SQLiteOpenHelper {
         return i;
     }
 
+    //Deletes a lesson or lessons group from the database based on its ID
     public void deleteOne(int id) {
         // Get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "id = ?", new String[]{String.valueOf(id)});
         db.close();
     }
+    
+    //Converts a time string in the format "HH:mm" to a Date object.
     public Date str2time(String str){
         Date d = null;
         try {
