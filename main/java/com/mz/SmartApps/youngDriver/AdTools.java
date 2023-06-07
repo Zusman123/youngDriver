@@ -21,20 +21,25 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.text.SimpleDateFormat;
-
+//AdTools is a utility class for managing ads in an Android application
 public class AdTools {
 
     private Context context;
     AdRequest adRequest;
     InterstitialAd myInterstitialAd;
+    
+    // Constructs an instance of AdTools with the given context.
     public AdTools(Context context) {
         this.context = context;
         adRequest = new AdRequest.Builder().build();
 
     }
+    
+    // Checks if the interstitial ad is null.
     public boolean isInterstitialAdNull(){
         return myInterstitialAd == null;
     }
+    //Loads a banner ad into the provided AdView
     public void loadBannerAd(AdView adView) {
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {
@@ -55,6 +60,7 @@ public class AdTools {
             }
         });
     }
+    // Shows the interstitial ad if it is not null.
     public void showInterstitialAd(){
         if (myInterstitialAd != null){
             myInterstitialAd.show((Activity)context);
@@ -63,6 +69,7 @@ public class AdTools {
 
     }
 
+    //Loads an interstitial ad with the specified ad unit ID.
     public void loadInterstitialAd(String adUnitId) {
         InterstitialAd.load(context, adUnitId, adRequest, new InterstitialAdLoadCallback() {
             @Override
@@ -77,6 +84,8 @@ public class AdTools {
             }
         });
     }
+    
+    //Loads and shows a fullscreen ad with the specified unit ID
     public void loadAndShowFullScreenAd(String unitId){
         InterstitialAd.load(context, unitId, adRequest, new InterstitialAdLoadCallback() {
             @Override
