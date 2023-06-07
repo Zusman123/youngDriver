@@ -132,6 +132,7 @@ public class AccompanyFragment extends Fragment {
         return view;
     }
 
+    // Sets alarms and notifications for accompanying completion
     private void setAlarms(Date gotDriverL) {
         Date endDayA = getEndAccompany(gotDriverL, Accompany.day);
         Date endNightA = getEndAccompany(gotDriverL, Accompany.night);
@@ -146,6 +147,7 @@ public class AccompanyFragment extends Fragment {
 
     }
 
+    //Sets a notification to be triggered at a specified time with the given text message
     private void setNotification(long triggerTime, String notificationText) {
         if (triggerTime > Calendar.getInstance().getTimeInMillis()){
             Intent notificationIntent = new Intent(getContext(), NotificationReceiver.class);
@@ -166,6 +168,7 @@ public class AccompanyFragment extends Fragment {
 
     }
 
+    //Cancels all scheduled alarms for notifications.
     public void cancelAllAlarms() {
         Intent alarmIntent = new Intent(getContext(), NotificationReceiver.class);
         alarmIntent.setAction("com.mz.SmartApps.youngDriver.SHOW_NOTIFICATION");
@@ -182,10 +185,9 @@ public class AccompanyFragment extends Fragment {
     }
 
 
-    enum Accompany {day, night}
+    enum Accompany {day, night} ; //Enumeration type representing the options for accompanying duty, specifically "day" and "night".
 
-    ;
-
+    //Calculates and returns the end time for the specified type of accompanying duty (day or night) based on the given driver's start time.
     public Date getEndAccompany(Date gotDriverL, Accompany which) {
         Date date;
         int month = 3, hour = 6; //default for day accompany
@@ -201,6 +203,7 @@ public class AccompanyFragment extends Fragment {
         return date;
     }
 
+    //Initializes and updates the counters and display values for the accompanying duty.
     private void setCounters() {
         gotDL = str2Date(gotDLdateBtn.getText().toString());
         nightCountdown.setVisibility(View.VISIBLE);
@@ -267,7 +270,7 @@ public class AccompanyFragment extends Fragment {
         }
 
     }
-
+//Formats the remaining time until completion in the "hh:mm:ss" format for the specified type of accompanying duty (day or night).
     public String timeUntilFinish(long millisec, Accompany which) {
         Date timeUm = new Date();
         long days = TimeUnit.MILLISECONDS.toDays(millisec); //how much days
@@ -291,6 +294,7 @@ public class AccompanyFragment extends Fragment {
         return hhmmss.format(timeUm);
     }
 
+    //Updates the accompany widget by sending a broadcast intent to trigger an update.
     private void updateWidget() {
         Intent updateWidget = new Intent(getContext(), AccompanyWidget.class); // Widget.class is your widget class
         updateWidget.setAction("update_widget");
@@ -307,7 +311,7 @@ public class AccompanyFragment extends Fragment {
     }
 
 
-
+//Adds a specified amount of time to the given date, using the specified time unit and count, and returns the resulting date.
     private Date addToDate(Date date, int what, int count) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -315,6 +319,7 @@ public class AccompanyFragment extends Fragment {
         return calendar.getTime();
     }
 
+    //Returns the counter text indicating the number of remaining days.
     private String getCounterText(int days) {
         String def = "עוד " + days + " ימים";
         if (days == 1)
@@ -322,6 +327,7 @@ public class AccompanyFragment extends Fragment {
         return def;
     }
 
+    //Converts a string representation of a date into a Date object.
     private Date str2Date(String date) {
         Date d = null;
         try {
@@ -332,6 +338,10 @@ public class AccompanyFragment extends Fragment {
         return d;
     }
 
+    /**
+ * Captures and shares the content of the specified LinearLayout.
+ * @param which The type of accompany (day or night).
+ */
     private void captureAndShareLinearLayout( Accompany which) {
         LinearLayout linearLayout = null;
         if (which == Accompany.day){
@@ -353,6 +363,7 @@ public class AccompanyFragment extends Fragment {
 
         linearLayout.draw(canvas);
 
+        //the bottom image
         Drawable drawable = getContext().getResources().getDrawable( R.drawable.bottom_share);
         int heightBottom = (int) (accompanyBit.getWidth()/3.37913);
         Bitmap belowBitmap = Bitmap.createBitmap(accompanyBit.getWidth(), heightBottom, Bitmap.Config.ARGB_8888);
@@ -360,6 +371,7 @@ public class AccompanyFragment extends Fragment {
         drawable.setBounds(0, 0, accompanyBit.getWidth(), heightBottom);
         drawable.draw(drawableCanvas);
 
+        //the title image
         Bitmap title = createTextBitmapWithBackground(accompanyBit.getWidth());
         int combinedWidth = accompanyBit.getWidth();
         int combinedHeight = accompanyBit.getHeight() + belowBitmap.getHeight()+title.getHeight()+50;
@@ -375,6 +387,7 @@ public class AccompanyFragment extends Fragment {
         shareImage(getContext(),combinedBitmap);
 
     }
+    //Shares the provided image bitmap 
     public void shareImage(Context context, Bitmap combinedBitmap) {
         // Create a file to store the combinedBitmap temporarily
         File tempFile = new File(context.getCacheDir(), "combined_image.jpg");
@@ -402,6 +415,7 @@ public class AccompanyFragment extends Fragment {
         }
     }
 
+    //Creates a bitmap with a background containing the specified text
     public Bitmap createTextBitmapWithBackground(int width) {
         Paint textPaint = new Paint();
         textPaint.setColor(Color.WHITE);
