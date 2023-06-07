@@ -71,6 +71,7 @@ public class Lesson {
         return type;
     }
 
+   //The duration in the format "start time - end time"
     public String getDuration(){
         return getStringTime(TimeS.start)+" - "+getStringTime(TimeS.end);
     }
@@ -80,16 +81,20 @@ public class Lesson {
     }
 
     enum TimeS{start,end};
+   //Retrieves the string representation of a specific time.
     public String getStringTime(TimeS timeS){
         if (timeS == TimeS.start )
             return timeFormat.format(startTime);
         return timeFormat.format(endTime);
 
     }
+   
+   //Retrieves the string representation of the date.
     public String getStringDate(){
       return dateFormat.format(date);
     }
 
+   //Converts a string representation of a date to a Date object.
     public static final Date str2date(String date){
         Date d = null;
         try {
