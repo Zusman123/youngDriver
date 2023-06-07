@@ -38,6 +38,8 @@ public class Payment {
     public Date getDateTime(){
         return date;
     }
+    
+    //get the Date object in string format
     public String getStringDate(){
         return dateFormat.format(date);
     }
