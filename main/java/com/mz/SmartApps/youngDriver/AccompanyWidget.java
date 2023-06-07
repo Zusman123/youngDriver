@@ -26,6 +26,7 @@ public class AccompanyWidget extends AppWidgetProvider {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     static long timeEndDayA, timeEndNightA;
 
+    //Updates the app widget with the specified appWidgetId.
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         // Construct the RemoteViews object
         RemoteViews views = remoteViewsWidget(context);
@@ -61,7 +62,7 @@ public class AccompanyWidget extends AppWidgetProvider {
             AppWidgetManager.getInstance(context).updateAppWidget(new ComponentName(context, AccompanyWidget.class), remoteViews);
         }
     }
-
+//Creates the RemoteViews for the widget.
     private static RemoteViews remoteViewsWidget(Context context) {
         sharedPreferences = context.getSharedPreferences("file1", 0);
         gotDLdate = sharedPreferences.getString("gotDLdate", null);
@@ -95,6 +96,7 @@ public class AccompanyWidget extends AppWidgetProvider {
         return views;
     }
 
+    //Calculates and sets the counters for the app widget based on the current date and the date obtained from gotDLdate.
     private static void setCounters() {
         Date gotDL = str2Date(gotDLdate);
 
@@ -120,6 +122,7 @@ public class AccompanyWidget extends AppWidgetProvider {
         }
     }
 
+    //This method calculates and returns the end date and time for the accompany based on the start date and type of accompany.
     private static Date getEndAccompany(Date gotDriverL, AccompanyFragment.Accompany which) {
         Date date;
         int month = 3, hour = 6;
@@ -135,6 +138,7 @@ public class AccompanyWidget extends AppWidgetProvider {
         return date;
     }
 
+    //This method converts a string representation of a date to a Date object using the dateFormat format.
     private static Date str2Date(String date) {
         Date d = null;
         try {
@@ -145,6 +149,7 @@ public class AccompanyWidget extends AppWidgetProvider {
         return d;
     }
 
+    //This method adds a specified amount of time to a given date and returns the updated date.
     private static Date addToDate(Date date, int what, int count) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -152,11 +157,13 @@ public class AccompanyWidget extends AppWidgetProvider {
         return calendar.getTime();
     }
 
+    //This method calculates the difference in days between two dates and returns the result as an integer.
     private static int diffranceBetween2Dates(Date startDate, Date endDate) {
         long diff = endDate.getTime() - startDate.getTime();
         return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
+    //This method generates a counter text based on the given time in milliseconds
     private static String getCounterText(long millisec) {
         if (millisec <= 0)
             return "הושלם";
