@@ -51,6 +51,7 @@ public class PaymentsDB extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    //Calculates the total payments by summing up the prices of all payments in the database.
     public int getTotalPayments() {
         int total = 0;
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -72,12 +73,13 @@ public class PaymentsDB extends SQLiteOpenHelper {
         return total;
     }
 
+    //Calculates the total amount of payments that are not paid int the lessons DataBase
     public int getTotalNotPaidAndLessonsNP() {
        return lessonsDB.getTotalNotPaid();
     }
 
 
-
+//Retrieves all payments from the database.
     public ArrayList<Payment> getAllPayments() {
         ArrayList<Payment> payments = new ArrayList<Payment>();
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -105,6 +107,7 @@ public class PaymentsDB extends SQLiteOpenHelper {
         return payments;
     }
 
+    //Retrieves all payments from the database and sorts them by date in descending order.
     public ArrayList<Payment> getSortPaymentsByDate() {
             ArrayList<Payment> sortedPayments = getAllPayments();
         Collections.sort(sortedPayments, new Comparator<Payment>() {
@@ -118,6 +121,7 @@ public class PaymentsDB extends SQLiteOpenHelper {
         return sortedPayments;
     }
 
+    //Adds a new payment to the database.
     public void addPayment(Payment payment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -129,7 +133,7 @@ public class PaymentsDB extends SQLiteOpenHelper {
         db.close();
     }
 
-
+//Updates an existing payment in the database.
     public int updatePayment(Payment payment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -145,6 +149,7 @@ public class PaymentsDB extends SQLiteOpenHelper {
         return i;
     }
 
+    //delete payment by id
     public void deleteOne(int id) {
         // Get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
