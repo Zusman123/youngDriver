@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            //set the fragments
             homeFragment = new HomeFragment();
             accompanyFragment = new AccompanyFragment();
             profileFragment = new ProfileFragment();
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        //adTools.loadInterstitialAd(getResources().getString(R.string.interstitial_payments));
     }
     @Override
     public void onBackPressed() {
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onNewIntent: "+intent.getExtras().getInt("type",0));
     }
 
+    //Listener for handling item selection events in the BottomNavigationView.
     BottomNavigationView.OnNavigationItemSelectedListener mainBNBlistener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
