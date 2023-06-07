@@ -75,6 +75,7 @@ public abstract class LessonsAdapter extends BaseAdapter {
         return view;
     }
 
+    //Updates the list of lessons with the provided updated lessons.
     public void updateGroups(ArrayList<Lesson> updatedLessons) {
         lessons.clear();
         lessons.addAll(updatedLessons);
@@ -86,12 +87,15 @@ public abstract class LessonsAdapter extends BaseAdapter {
         });
     }
 
+    //Returns the formatted string representation of the group lesson count.
     private String getGroupLsnCount(double count){
         if ((count-(int)count) >0)
             return count+"";
         else
             return (int)count +"";
     }
+    
+    //Called when the paid status of a lesson has changed.
     public abstract void onPaidChanged(boolean checked, int position);
 
 }
