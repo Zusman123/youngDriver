@@ -27,7 +27,11 @@ import java.util.Date;
 import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_CLASS_TEXT;
 
+/**
+ * A fragment for displaying and editing user profile information.
+ */
 public class ProfileFragment extends Fragment {
+
     private TextView nameSubT, nameProfile, dateProfile, timeProfile, priceProfile;
     private LinearLayout nameLl, birthdayLl, timeLl, priceLl;
     private SharedPreferences sharedPreferences;
@@ -38,18 +42,19 @@ public class ProfileFragment extends Fragment {
     private Button save;
     private String[] titles = new String[]{"שנה שם", "שנה תאריך לידה", " שנה אורך שיעור", "שנה עלות שיעור"};
     private String[] keys = new String[]{"name", "date", "time", "price"};
-    private int[] maxLength = new int[]{50,0,4,6};
+    private int[] maxLength = new int[]{50, 0, 4, 6};
     private String[] data;
     private TextView[] profileTexts;
-    private int[] inputType = new int[]{TYPE_CLASS_TEXT,TYPE_CLASS_TEXT,TYPE_CLASS_NUMBER, TYPE_CLASS_NUMBER};
-    public ProfileFragment() {
+    private int[] inputType = new int[]{TYPE_CLASS_TEXT, TYPE_CLASS_TEXT, TYPE_CLASS_NUMBER, TYPE_CLASS_NUMBER};
 
+    public ProfileFragment() {
+        // Required empty public constructor
     }
 
+   
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         nameSubT = view.findViewById(R.id.nameSubT);
         nameProfile = view.findViewById(R.id.nameProfile);
@@ -90,28 +95,40 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    public void saveBtnClick(int index,String text) {
+    /**
+     * Handles the click event for saving profile data.
+     *
+     * @param index The index of the profile data field being edited
+     * @param text  The new value entered for the profile data field
+     */
+    public void saveBtnClick(int index, String text) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (index < 2)
             editor.putString(keys[index], text);
         else
             editor.putInt(keys[index], Integer.parseInt(text));
-        editor.commit();
+        editor.apply();
         profileTexts[index].setText(text);
         data[index] = text;
         if (index == 0)
             nameSubT.setText(text);
     }
 
+    /**
+     * Creates a click listener for the profile data fields.
+     *
+     * @param index The index of the profile data field being edited
+     * @return The OnClickListener for the profile data field
+     */
     public View.OnClickListener clickLl(final int index) {
         View.OnClickListener v = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editText.setInputType(inputType[index]);
-                editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(maxLength[index]) });
+                editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength[index])});
                 title.setText(titles[index]);
                 editText.setText(data[index]);
-                editText.addTextChangedListener(new ProperInput().cheakProperInput(editText,save));
+                editText.addTextChangedListener(new ProperInput().cheakProperInput(editText, save));
                 if (index == 1) {
                     Calendar c = Calendar.getInstance();
                     c.setTime(str2date(data[index]));
@@ -121,29 +138,31 @@ public class ProfileFragment extends Fragment {
                             Calendar calendar = Calendar.getInstance();
                             calendar.set(year, month, dayOfMonth);
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                            String formatedDate = sdf.format(calendar.getTime());
-                            saveBtnClick(index,formatedDate);
+                            String formattedDate = sdf.format(calendar.getTime());
+                            saveBtnClick(index, formattedDate);
                         }
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                     datePickerDialog.show();
-
-                }
-                else
+                } else
                     changeDialog.show();
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       saveBtnClick(index,editText.getText().toString());
+                        saveBtnClick(index, editText.getText().toString());
                         changeDialog.dismiss();
                     }
                 });
-
             }
         };
         return v;
     }
 
-
+    /**
+     * Converts a string representation of a date to a Date object.
+     *
+     * @param date The date string to convert
+     * @return The corresponding Date object
+     */
     public Date str2date(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date d = null;
