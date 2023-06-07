@@ -127,6 +127,8 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
+    
+    //updating the summary data displayed in the HomeFragment
     private void setSumDatas() {
         PaymentsDB paymentsDB = new PaymentsDB(getContext());
         lessonsCount =lessonsDB.getLessonsCount();
