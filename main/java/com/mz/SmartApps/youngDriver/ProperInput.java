@@ -11,6 +11,7 @@ public class ProperInput {
 
     }
 
+    //Creates a TextWatcher to check proper input in the specified EditText[] fields and enable/disable a button accordingly.
     public TextWatcher cheakProperInput(EditText[] editTexts, Button button) {
         TextWatcher textWatcher = new TextWatcher() {
             boolean proper = true;
@@ -44,6 +45,7 @@ public class ProperInput {
         return textWatcher;
     }
 
+    //Creates a TextWatcher to check proper input in the specified EditText fields and enable/disable a button accordingly.
     public TextWatcher cheakProperInput(EditText editText, Button button) {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
