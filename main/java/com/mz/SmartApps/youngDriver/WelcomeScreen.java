@@ -93,6 +93,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
     }
 
+    //Creates a TextWatcher to check for true data input in the name and date fields and enable/disable a button accordingly.
     private TextWatcher cheakTrueData(){
         TextWatcher textWatcher  = new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
@@ -112,6 +113,7 @@ public class WelcomeScreen extends AppCompatActivity {
         return textWatcher;
     }
 
+    //intent to the phone's home screen
     @Override
     public void onBackPressed() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
