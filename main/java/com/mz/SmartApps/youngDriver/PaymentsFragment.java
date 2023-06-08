@@ -116,6 +116,7 @@ public class PaymentsFragment extends Fragment {
         return view;
     }
 
+    //Sets the summary data for payments.
     private void setSumDatas() {
         totalPayment = paymentsDB.getTotalPayments();
         notPaidP = paymentsDB.getTotalNotPaidAndLessonsNP();
@@ -125,6 +126,7 @@ public class PaymentsFragment extends Fragment {
         notPaid.setText(notPaidP+"₪");
     }
 
+    //Sets up the add payment dialog. Initializes the dialog and its layout.
     private void setAddPaymentDilaog() {
         addialog= new Dialog(getActivity());
         addialog.setContentView(R.layout.add_payment_dialog);
